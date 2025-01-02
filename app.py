@@ -29,7 +29,7 @@ filtered_df = load_data()
 st.title('OpenAI Model Analysis Dashboard')
 
 # Key metrics
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.metric("Total Models", len(filtered_df))
 with col2:
@@ -37,7 +37,10 @@ with col2:
 with col3:
     avg_token_price = filtered_df[filtered_df['Input_Token_Price'].notna()]['Input_Token_Price'].mean()
     st.metric("Avg Input Token Price", f"${avg_token_price:.6f}")
-
+with col4:
+    avg_token_price = filtered_df[filtered_df['Output_Token_Price'].notna()]['Output_Token_Price'].mean()
+    st.metric("Avg Output Token Price", f"${avg_token_price:.6f}")
+    
 # Model Cost Comparison
 st.header('Model Cost Comparison')
 
